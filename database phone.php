@@ -381,16 +381,13 @@
 echo "<H1>"."Прайс-лист на телефоны:"."</H1>";
 
 function phoneCompare($phone1, $phone2){
-	if ($phone1['vendor'] == $phone2['vendor']){
-		return 0;
-	}
-	return ($phone2['vendor']<$phone1['vendor'])? 1:-1;
+		return (strcmp($phone1['vendor'], $phone2['vendor']));
 }
 usort ($data, 'phoneCompare');
 
 foreach ($data as $phone){
-	$Photo = ($phone['mainPhoto']['url']);
-	$link = ($phone['link']);
+	$Photo = htmlspecialchars($phone['mainPhoto']['url']);
+	$link = htmlspecialchars($phone['link']);
 	?>	
 	<table>
 		<tr> 
@@ -425,6 +422,8 @@ Foreach ($data as $phone){
 	}
 }
 Foreach ($data as $phone) {
+	$Photo = htmlspecialchars($phone['mainPhoto']['url']);
+	$link = htmlspecialchars($phone['link']);
 	if (htmlspecialchars($phone['rating'])== $maxRating){
 		$topPhones[]=$phone;
 		?>
@@ -454,7 +453,7 @@ Foreach ($data as $phone) {
 
 ?>
 </body>
-
+</html>
 
 
 
